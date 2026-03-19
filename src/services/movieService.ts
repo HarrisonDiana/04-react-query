@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { Movie } from '../types/movie';
 
-const API_KEY = '4af407c60d96adf1763b16ccc6373277';
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 export interface FetchMoviesParams {
   query: string;
