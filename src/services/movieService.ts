@@ -23,10 +23,12 @@ export const fetchMovies = async ({ query, page = 1 }: FetchMoviesParams) => {
     'https://api.themoviedb.org/3/search/movie',
     {
       params: {
-        api_key: API_KEY,
         query,
         page,
       },
+      headers: {
+      Authorization: `Bearer ${API_KEY}`,
+      }
     }
   );
 
