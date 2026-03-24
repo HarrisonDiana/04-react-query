@@ -32,5 +32,5 @@ export const fetchMovies = async ({ query, page = 1 }: FetchMoviesParams) => {
     }
   );
 
-  return response.data.results;
+  return response.data;
 };
