@@ -1,8 +1,10 @@
-import axios from 'axios';
-import type { Movie } from '../types/movie';
+import axios from "axios";
+import type { Movie } from "../types/movie";
 
-const BASE_URL = 'https://api.themoviedb.org/3';
+const BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_API_KEY;
+
+axios.defaults.baseURL = BASE_URL;
 
 export interface FetchMoviesParams {
   query: string;
@@ -17,20 +19,17 @@ export interface FetchMoviesResponse {
 }
 
 export const fetchMovies = async ({ query, page = 1 }: FetchMoviesParams) => {
-  if (!query.trim()) throw new Error('Query must not be empty');
+  if (!query.trim()) throw new Error("Query must not be empty");
 
-  const response = await axios.get<FetchMoviesResponse>(
-    'https://api.themoviedb.org/3/search/movie',
-    {
-      params: {
-        query,
-        page,
-      },
-      headers: {
+  const response = await axios.get<FetchMoviesResponse>("/search/movie", {
+    params: {
+      query,
+      page,
+    },
+    headers: {
       Authorization: `Bearer ${API_KEY}`,
-      }
-    }
-  );
+    },
+  });
 
   return response.data;
 };
